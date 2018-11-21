@@ -8,15 +8,11 @@ const geocodeAddress = (address, callback) => {
       json: true
     },
     (err, res, body) => {
-      if (err) {
+      if (err || res.statusCode !== 200 || body === undefined) {
         callback('Unable to get a server response');
-      } else if (body.info.statuscode === 400) {
-        callback(body.info.messages[0]);
       } else {
-        callback(undefined, {
-          encodedAddress,
-          result: body.results[0].locations[0].displayLatLng
-        });
+        const { lat, lng } = body.results[0].locations[0].displayLatLng;
+        callback(undefined, { encodedAddress, lat, lng });
       }
     }
   );
