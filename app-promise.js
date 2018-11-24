@@ -32,7 +32,7 @@ axios
     const temp = response.data.currently.temperature;
     const apparentTemp = response.data.currently.apparentTemperature;
     console.log(
-      `It's currently ${temp} in ${argv.address}. It feels like ${apparentTemp}`
+      `in ${argv.address} it's currently ${temp} and it feels like ${apparentTemp}`
     );
   })
   .catch(err => {
